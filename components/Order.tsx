@@ -3,8 +3,10 @@ import Image from 'next/image'
 import { MessageCircle, Instagram, Facebook } from './icons'
 import { brand } from '@/lib/brand'
 import { useReveal } from '@/hooks/useReveal'
+import { useLang } from './LanguageProvider'
 
 export function Order() {
+  const { t } = useLang()
   const ref = useReveal<HTMLElement>(0.1)
   const waLink = `https://wa.me/${brand.whatsapp.replace(/\D/g, '')}`
 
@@ -19,16 +21,16 @@ export function Order() {
         {/* Centered, ~70% width, scaled up */}
         <div className="mx-auto flex w-full flex-col items-center text-center md:w-[70%]">
           <p data-reveal className="label mb-7">
-            04 &mdash; Order
+            {t.order.label}
           </p>
           <h2
             data-reveal
             className="font-[family-name:var(--font-display)] text-[clamp(2.75rem,6.5vw,5rem)] font-light leading-[1.04] tracking-[-0.02em] text-[#F2EFEA]"
           >
-            Bring M1 <span className="italic text-[#D4A85E]">to your table.</span>
+            {t.order.h1} <span className="italic text-[#D4A85E]">{t.order.h2}</span>
           </h2>
           <p data-reveal className="mx-auto mt-7 max-w-xl text-[1.125rem] leading-relaxed text-[#C9C3BA]">
-            Order in for delivery, or message us directly to reserve a table.
+            {t.order.p}
           </p>
 
           <div data-reveal className="mt-12 flex w-full flex-col gap-4">
@@ -39,7 +41,7 @@ export function Order() {
               rel="noopener noreferrer"
               className="flex items-center justify-center bg-[#B8924A] px-8 py-6 text-sm font-bold uppercase tracking-[0.22em] text-[#0B0C0F] transition-colors duration-300 hover:bg-[#D4A85E]"
             >
-              Order on Talabat
+              {t.order.talabat}
             </a>
 
             {/* secondary actions */}
@@ -50,7 +52,7 @@ export function Order() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 border border-[#B8924A]/40 px-6 py-5 text-xs uppercase tracking-[0.18em] text-[#D4A85E] transition-all duration-300 hover:border-[#B8924A] hover:bg-[#B8924A]/10"
               >
-                <Instagram className="h-4 w-4" strokeWidth={1.5} /> Instagram
+                <Instagram className="h-4 w-4" strokeWidth={1.5} /> {t.order.instagram}
               </a>
               <a
                 href={waLink}
@@ -58,7 +60,7 @@ export function Order() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 border border-[#F2EFEA]/15 px-6 py-5 text-xs uppercase tracking-[0.18em] text-[#F2EFEA] transition-colors duration-300 hover:border-[#F2EFEA]/40"
               >
-                <MessageCircle className="h-4 w-4" strokeWidth={1.5} /> WhatsApp
+                <MessageCircle className="h-4 w-4" strokeWidth={1.5} /> {t.order.whatsapp}
               </a>
               <a
                 href={brand.socials.facebook}
@@ -66,7 +68,7 @@ export function Order() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 border border-[#F2EFEA]/15 px-6 py-5 text-xs uppercase tracking-[0.18em] text-[#F2EFEA] transition-colors duration-300 hover:border-[#F2EFEA]/40"
               >
-                <Facebook className="h-4 w-4" strokeWidth={1.5} /> Facebook
+                <Facebook className="h-4 w-4" strokeWidth={1.5} /> {t.order.facebook}
               </a>
             </div>
           </div>

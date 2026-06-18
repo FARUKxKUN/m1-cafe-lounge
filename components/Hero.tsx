@@ -1,10 +1,11 @@
 'use client'
 import { useRef, useEffect } from 'react'
-import { brand } from '@/lib/brand'
 import { gsap } from '@/lib/gsap'
 import { MagneticButton } from './MagneticButton'
+import { useLang } from './LanguageProvider'
 
 export function Hero() {
+  const { t, lang } = useLang()
   const sectionRef = useRef<HTMLElement>(null)
   const mediaRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
@@ -116,36 +117,39 @@ export function Hero() {
         {/* Legibility scrim - feathered, concentrated bottom-left under the copy.
             Video stays clear toward the top-right; text sits on a calm backing. */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C0F] via-[#0B0C0F]/35 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B0C0F]/85 via-[#0B0C0F]/30 to-transparent" />
-        <div className="absolute inset-0 [background:radial-gradient(80%_70%_at_22%_78%,rgba(11,12,15,0.7),transparent_70%)]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B0C0F]/85 via-[#0B0C0F]/30 to-transparent rtl:bg-gradient-to-l" />
+        <div className="absolute inset-0 [background:radial-gradient(80%_70%_at_22%_78%,rgba(11,12,15,0.7),transparent_70%)] rtl:[background:radial-gradient(80%_70%_at_78%_78%,rgba(11,12,15,0.7),transparent_70%)]" />
       </div>
 
       {/* Content - editorial bottom-left */}
       <div className="relative z-10 flex h-full items-end pb-[14vh] md:pb-[12vh]">
         <div ref={contentRef} data-hero-content className="shell">
           <p data-hero-fade className="label mb-7">
-            Al Bateen / Abu Dhabi
+            {t.hero.place}
           </p>
 
-          <h1 ref={headlineRef} className="display text-[clamp(3.25rem,11vw,9.5rem)] text-[#F2EFEA]">
+          <h1
+            ref={headlineRef}
+            key={lang}
+            className="display text-[clamp(3.25rem,11vw,9.5rem)] text-[#F2EFEA]"
+          >
             <span data-line className="block overflow-hidden pb-[0.08em]">
-              <span className="block">Slow mornings.</span>
+              <span className="block">{t.hero.line1}</span>
             </span>
             <span data-line className="block overflow-hidden pb-[0.08em]">
-              <span className="block italic text-[#D4A85E]">Golden evenings.</span>
+              <span className="block italic text-[#D4A85E]">{t.hero.line2}</span>
             </span>
           </h1>
 
           <p data-hero-fade className="mt-9 max-w-md text-[1.0625rem] leading-relaxed text-[#C9C3BA]">
-            {brand.tagline}. A lounge in the heart of Al Bateen where coffee, cuisine and
-            atmosphere meet.
+            {t.hero.tagline}
           </p>
 
           <div data-hero-fade className="mt-11 flex flex-wrap gap-4">
             <MagneticButton href="#order" primary>
-              Order Now
+              {t.hero.order}
             </MagneticButton>
-            <MagneticButton href="#menu">View Menu</MagneticButton>
+            <MagneticButton href="#menu">{t.hero.menu}</MagneticButton>
           </div>
         </div>
       </div>
@@ -155,7 +159,7 @@ export function Hero() {
         data-hero-fade
         className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2"
       >
-        <span className="label text-[#9A938A]">Scroll</span>
+        <span className="label text-[#9A938A]">{t.hero.scroll}</span>
         <span className="h-10 w-px bg-gradient-to-b from-[#B8924A] to-transparent" />
       </div>
     </section>

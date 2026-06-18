@@ -1,8 +1,10 @@
 'use client'
 import Image from 'next/image'
 import { useReveal } from '@/hooks/useReveal'
+import { useLang } from './LanguageProvider'
 
 export function About() {
+  const { t } = useLang()
   const ref = useReveal<HTMLElement>(0.12)
 
   return (
@@ -11,23 +13,21 @@ export function About() {
       <div className="shell relative grid items-center gap-x-16 gap-y-12 md:grid-cols-2 md:gap-x-24">
         <div>
           <p data-reveal className="label mb-7">
-            01 &mdash; The Place
+            {t.about.label}
           </p>
           <h2
             data-reveal
             className="font-[family-name:var(--font-display)] text-[clamp(2.25rem,5vw,3.75rem)] font-light leading-[1.05] tracking-[-0.02em] text-[#F2EFEA]"
           >
-            More than coffee.
+            {t.about.h1}
             <br />
-            <span className="italic text-[#D4A85E]">A way to pause.</span>
+            <span className="italic text-[#D4A85E]">{t.about.h2}</span>
           </h2>
           <p data-reveal className="mt-9 max-w-md text-[1.0625rem] leading-relaxed text-[#C9C3BA]">
-            Tucked into Al Bateen, M1 Cafe Lounge is where the city slows down. Velvet seating,
-            brass light and marble - a room built for long conversations and good food.
+            {t.about.p1}
           </p>
           <p data-reveal className="mt-5 max-w-md text-[1.0625rem] leading-relaxed text-[#9A938A]">
-            From the first espresso of the morning to a late-night plate, every detail is
-            considered. This is hospitality with intent.
+            {t.about.p2}
           </p>
         </div>
 

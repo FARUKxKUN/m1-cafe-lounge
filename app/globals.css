@@ -38,12 +38,26 @@ html {
 body {
   background-color: #0B0C0F;
   color: #F2EFEA;
-  font-family: 'Hanken Grotesk', system-ui, sans-serif;
+  font-family: var(--font-body), 'Hanken Grotesk', system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+}
+
+/* Arabic: remap the font variables so every component using them switches automatically. */
+[lang='ar'] {
+  --font-display: var(--font-display-ar);
+  --font-body: var(--font-body-ar);
+  --font-mono: var(--font-body-ar);
+}
+[lang='ar'] body {
+  font-family: var(--font-body-ar), system-ui, sans-serif;
+  line-height: 1.85;
+}
+[lang='ar'] .label {
+  letter-spacing: 0.08em;
 }
 
 /* ----- Layout system: ONE container, ONE spacing scale ----- */
@@ -83,7 +97,7 @@ body {
 
 /* ----- Typography helpers ----- */
 .label {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono), 'DM Mono', monospace;
   font-size: 0.7rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -91,7 +105,7 @@ body {
 }
 
 .display {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: var(--font-display), 'Fraunces', Georgia, serif;
   font-weight: 300;
   line-height: 1.0;
   letter-spacing: -0.025em;

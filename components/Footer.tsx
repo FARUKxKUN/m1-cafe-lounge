@@ -1,8 +1,10 @@
 'use client'
 import { Instagram, Link2 } from './icons'
 import { brand } from '@/lib/brand'
+import { useLang } from './LanguageProvider'
 
 export function Footer() {
+  const { t } = useLang()
   return (
     <footer className="section section--seam-none border-t border-[#B8924A]/20 !pb-14 !pt-20">
       <div className="shell">
@@ -11,7 +13,7 @@ export function Footer() {
             <p className="font-[family-name:var(--font-display)] text-3xl font-light tracking-[-0.01em] text-[#F2EFEA]">
               M1 <span className="italic text-[#D4A85E]">Cafe Lounge</span>
             </p>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-[#9A938A]">{brand.address}</p>
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-[#9A938A]">{t.location.addressText}</p>
           </div>
 
           <div className="flex items-center gap-4">
@@ -37,10 +39,8 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col gap-3 border-t border-[#F2EFEA]/10 pt-8 text-xs text-[#9A938A] md:flex-row md:items-center md:justify-between">
-          <p>&copy; {new Date().getFullYear()} M1 Cafe Lounge. All rights reserved.</p>
-          <p className="font-[family-name:var(--font-mono)] tracking-wide">
-            Site by Faruk &middot; faruk_automates
-          </p>
+          <p>&copy; {new Date().getFullYear()} M1 Cafe Lounge. {t.footer.rights}</p>
+          <p className="font-[family-name:var(--font-mono)] tracking-wide">{t.footer.by}</p>
         </div>
       </div>
     </footer>

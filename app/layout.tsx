@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Fraunces, Hanken_Grotesk, DM_Mono } from 'next/font/google'
+import { Fraunces, Hanken_Grotesk, DM_Mono, El_Messiri, Tajawal } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
 
@@ -20,6 +20,19 @@ const dmMono = DM_Mono({
   variable: '--font-mono',
 })
 
+// Arabic faces - elegant display + clean body. Activated via [lang="ar"] in globals.css.
+const elMessiri = El_Messiri({
+  subsets: ['arabic'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-display-ar',
+})
+
+const tajawal = Tajawal({
+  subsets: ['arabic'],
+  weight: ['400', '500', '700'],
+  variable: '--font-body-ar',
+})
+
 export const metadata: Metadata = {
   title: 'M1 Cafe Lounge | Al Bateen, Abu Dhabi',
   description:
@@ -28,7 +41,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${hankenGrotesk.variable} ${dmMono.variable}`}>
+    <html
+      lang="en"
+      className={`${fraunces.variable} ${hankenGrotesk.variable} ${dmMono.variable} ${elMessiri.variable} ${tajawal.variable}`}
+    >
       <body className="grain">
         <Providers>{children}</Providers>
       </body>

@@ -1,8 +1,10 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { brand } from '@/lib/brand'
+import { useLang } from './LanguageProvider'
 
 export function MobileCTA() {
+  const { t } = useLang()
   const [visible, setVisible] = useState(false)
   const waLink = `https://wa.me/${brand.whatsapp.replace(/\D/g, '')}`
 
@@ -27,7 +29,7 @@ export function MobileCTA() {
         rel="noopener noreferrer"
         className="flex min-h-[52px] items-center justify-center bg-[#B8924A] text-xs font-bold uppercase tracking-[0.18em] text-[#0B0C0F]"
       >
-        Order
+        {t.mobile.order}
       </a>
       <a
         href={waLink}
@@ -35,7 +37,7 @@ export function MobileCTA() {
         rel="noopener noreferrer"
         className="flex min-h-[52px] items-center justify-center text-xs uppercase tracking-[0.18em] text-[#F2EFEA]"
       >
-        WhatsApp
+        {t.mobile.whatsapp}
       </a>
     </div>
   )

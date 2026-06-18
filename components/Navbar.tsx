@@ -1,16 +1,12 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { brand } from '@/lib/brand'
+import { useLang } from './LanguageProvider'
 
-const links = [
-  { label: 'Menu', href: '#menu' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'About', href: '#about' },
-  { label: 'Visit', href: '#location' },
-]
+const hrefs = ['#menu', '#gallery', '#about', '#location'] as const
 
 export function Navbar() {
+  const { t, toggle } = useLang()
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -21,6 +17,8 @@ export function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  const links = [t.nav.menu, t.nav.gallery, t.nav.about, t.nav.visit]
 
   return (
     <header
@@ -40,35 +38,53 @@ export function Navbar() {
               M1 Cafe Lounge
             </span>
             <span className="mt-[6px] hidden font-[family-name:var(--font-mono)] text-[0.5rem] uppercase tracking-[0.34em] text-[#9A938A] sm:block">
-              Al Bateen, Abu Dhabi
+              {t.nav.subtitle}
             </span>
           </span>
         </a>
 
         <div className="hidden items-center gap-10 md:flex">
-          {links.map((l) => (
+          {links.map((label, i) => (
             <a
-              key={l.href}
-              href={l.href}
+              key={hrefs[i]}
+              href={hrefs[i]}
               className="cursor-pointer text-xs uppercase tracking-[0.18em] text-[#C9C3BA] transition-colors duration-300 hover:text-[#D4A85E]"
             >
-              {l.label}
+              {label}
             </a>
           ))}
           <a
             href="#order"
             className="cursor-pointer border border-[#B8924A]/50 px-5 py-2.5 text-xs uppercase tracking-[0.18em] text-[#D4A85E] transition-all duration-300 hover:bg-[#B8924A] hover:text-[#0B0C0F]"
           >
-            Order
+            {t.nav.order}
           </a>
+          <button
+            type="button"
+            onClick={toggle}
+            aria-label="Switch language"
+            className="flex h-9 min-w-9 cursor-pointer items-center justify-center rounded-full border border-[#B8924A]/50 px-3 text-xs font-medium tracking-wide text-[#D4A85E] transition-all duration-300 hover:bg-[#B8924A] hover:text-[#0B0C0F]"
+          >
+            {t.toggle}
+          </button>
         </div>
 
-        <a
-          href={`tel:${brand.phone}`}
-          className="flex h-11 cursor-pointer items-center text-xs uppercase tracking-[0.18em] text-[#D4A85E] md:hidden"
-        >
-          Call
-        </a>
+        <div className="flex items-center gap-4 md:hidden">
+          <button
+            type="button"
+            onClick={toggle}
+            aria-label="Switch language"
+            className="flex h-9 min-w-9 cursor-pointer items-center justify-center rounded-full border border-[#B8924A]/50 px-3 text-xs font-medium text-[#D4A85E]"
+          >
+            {t.toggle}
+          </button>
+          <a
+            href="#order"
+            className="flex h-11 cursor-pointer items-center text-xs uppercase tracking-[0.18em] text-[#D4A85E]"
+          >
+            {t.nav.order}
+          </a>
+        </div>
       </nav>
     </header>
   )
