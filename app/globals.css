@@ -1,26 +1,134 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-accent: #B8924A;
+  --color-accent-light: #D4A85E;
+  --color-accent-dark: #8A6A30;
+  --color-navy: #252D3D;
+  --color-bg-dark: #0B0C0F;
+  --color-bg-mid: #121319;
+  --color-bg-section: #16171E;
+  --color-bg-light: #F5F1EA;
+  --color-text-light: #F2EFEA;
+  --color-text-muted: #9A938A;
+  --color-text-dark: #1A1C22;
+  --color-blue-accent: #4A6FA5;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Hanken Grotesk', system-ui, sans-serif;
+  --font-mono: 'DM Mono', 'Courier New', monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ----- Reset -----
+   Tailwind v4 preflight already resets margins/padding + box-sizing inside @layer base,
+   which lets utilities (mt-*, py-*, space-y-*) override it. Do NOT add an unlayered
+   `* { margin:0; padding:0 }` here - unlayered rules beat layered utilities and silently
+   kill every spacing utility on the site. box-sizing is kept layered so utilities still win. */
+@layer base {
+  * {
+    box-sizing: border-box;
   }
 }
 
+html {
+  scroll-behavior: auto;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0B0C0F;
+  color: #F2EFEA;
+  font-family: 'Hanken Grotesk', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* ----- Layout system: ONE container, ONE spacing scale ----- */
+.shell {
+  width: 100%;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+}
+
+/* single vertical rhythm for every section */
+.section {
+  position: relative;
+  padding-block: clamp(5.5rem, 11vw, 10rem);
+}
+
+/* elegant centered hairline = clear-but-soft section division */
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1320px, 88vw);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(184, 146, 74, 0.28),
+    transparent
+  );
+}
+
+.section--seam-none::before {
+  display: none;
+}
+
+/* ----- Typography helpers ----- */
+.label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #B8924A;
+}
+
+.display {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 300;
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+}
+
+/* consistent reading measure for body copy */
+.measure {
+  max-width: 34ch;
+}
+
+/* ----- Atmosphere: radial glow (no flat fills) ----- */
+.glow {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 9999px;
+  filter: blur(120px);
+  background: radial-gradient(circle, rgba(184, 146, 74, 0.18), transparent 70%);
+}
+
+/* ----- Film grain over everything ----- */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ----- Motion / a11y ----- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
