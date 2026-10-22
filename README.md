@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# M1 Cafe Lounge
 
-## Getting Started
+Bilingual (English and Arabic) website for M1 Cafe Lounge in Al Bateen, Abu Dhabi.
 
-First, run the development server:
+**Live:** [m1cafe.farukportfolio.live](https://m1cafe.farukportfolio.live)
+
+![M1 Cafe Lounge homepage](docs/screenshot.png)
+
+## Features
+
+- English and Arabic with a language toggle and full right-to-left layout
+- Separate Arabic display and body fonts (El Messiri, Tajawal)
+- Video hero with a staggered headline reveal
+- Menu, gallery, reviews, about and location sections
+- Order and WhatsApp buttons, plus a sticky mobile call-to-action bar
+- Magnetic buttons and scroll-triggered reveals
+- Smooth scroll with Lenis, synced to GSAP ScrollTrigger
+
+## Stack
+
+- Next.js 16 (App Router), React 19, TypeScript
+- Tailwind CSS v4
+- GSAP + ScrollTrigger
+- Lenis
+- Fraunces, Hanken Grotesk, DM Mono, El Messiri and Tajawal via `next/font`
+
+## How the translation works
+
+All copy lives in `lib/content.ts` as one object per language. `LanguageProvider` holds the active language, sets `dir` and `lang` on the document, and every section reads its text from the provider, so adding a language means adding one object.
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open http://localhost:3000.
