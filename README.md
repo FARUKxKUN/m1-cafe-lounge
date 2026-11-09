@@ -1,6 +1,6 @@
 # M1 Cafe Lounge
 
-[![Live site](https://img.shields.io/badge/live-m1cafe.farukportfolio.live-e2643a?style=flat)](https://m1cafe.farukportfolio.live)
+[![Live site](https://img.shields.io/badge/live-m1cafe.faroukbattikh.com-e2643a?style=flat)](https://m1cafe.faroukbattikh.com)
 ![Next.js 16](https://img.shields.io/badge/Next.js-16-000000?style=flat&logo=nextdotjs&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
 ![GSAP](https://img.shields.io/badge/GSAP-0AE448?style=flat&logo=greensock&logoColor=black)
@@ -10,7 +10,7 @@ Bilingual (English and Arabic) concept website for M1 Cafe Lounge in Al Bateen, 
 
 > **Concept site.** An unofficial study I designed and built to practise hospitality web design. It was not commissioned by M1 Cafe Lounge and is not affiliated with it. The cafe's name and brand belong to its owners.
 
-**Live:** [m1cafe.farukportfolio.live](https://m1cafe.farukportfolio.live)
+**Live:** [m1cafe.faroukbattikh.com](https://m1cafe.faroukbattikh.com)
 
 ![M1 Cafe Lounge homepage](docs/screenshot.png)
 
